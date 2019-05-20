@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+
+}
+
+li {
+    list-style: none;
+
+}
+.clearfloat:after{
+    display: block;
+    content: " ";
+    clear: both;
+}
+hmtl, body {
+    width: 100%;
+    font-size: 14px;
+    background: url("../img/bg.jpg");
+}
+
+/*
+ * 顶部区域
+ */
+header {
+
+    height: 50px;
+    background: #191818;
+}
+
+.header-wrap {
+    width: 1170px;
+    margin: 0 auto;
+}
+
+.nav-meu h1 {
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 50px;
+    float: left;
+    padding-right: 20px;
+}
+
+.nav-meu ul {
+    float: left;
+}
+
+.nav-meu ul li {
+    display: inline-block;
+    color: #ffffff;
+    line-height: 50px;
+    margin: 0 10px;
+}
+
+.search-bar {
+    float: right;
+    line-height: 50px;
+}
+
+.search-bar input {
+    height: 30px;
+    padding: 5px;
+    outline: none;
+    border-radius: 3px;
+    border: none;
+}
+
+.search-bar button {
+    height: 30px;
+    width: 50px;
+    outline: none;
+    background: #fff;
+    color: #333333;
+    border-radius: 3px;
+    border: none;
+}
+
+/*
+ * 顶部区域结束
+ */
+
+
+/*
+ * 中间区域样式
+ */
+.content-wrap{
+    width: 1170px;
+    margin: 30px auto 0;
+}
+.content-left{
+    float: left;
+}
+.content-right{
+    float: right;
+}
+
+footer{
+    background: #191818;
+    height: 70px;
+    width: 100%;
+}
+
+

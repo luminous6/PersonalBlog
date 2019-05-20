@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人博客</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/blog-detail.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<!--
+  -头部区域
+  -->
+<header>
+    <div class="header-wrap">
+        <div class="nav-meu">
+            <h1>我的个人博客 | 技术博客</h1>
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li><a href="/sitemap.html">地图</a></li>
+                <li><a href="/about.html">关于</a></li>
+                <li><a href="/">留言</a></li>
+            </ul>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="请输入关键字">
+            <button>搜索</button>
+        </div>
+    </div>
+</header>
+
+<!--
+  -中间内容区域
+  -->
+<div class="content">
+    <div class="content-wrap clearfloat">
+        <!-- 中间区域左边 -->
+        <div class="content-left">
+            <div class="article-detail" id="article-detail">
+                <h4 class="blog-detail-title">{{blogTitle}}</h4>
+                <p class="blog-detail-info">作者：LUMINOUS 标签：{{tags}} 发布于： {{ctime}} 浏览：{{views}}</p>
+                <div class="blog-detail-text" v-html="content"></div>
+            </div>
+
+            <div class="comments" id="blog-comments">
+                <h4>当前文章：目前有{{commentCount}}条评论</h4>
+                <div class="comments-list">
+                    <div class="comments-item" v-for="(item,index) in commentsList" :key="index">
+                        <p class="msg-person">
+                            <b>{{item.user_name}}</b>：<span>{{item.options}}发表于 {{item.ctime}}</span>
+                            <a @click="reply(item.id,item.user_name)">[回复]</a>
+                        </p>
+                        <p class="comment-msg">{{item.comments}}</p>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="send-comment" id="send-comment">
+                <h5>发表评论</h5>
+                <input type="hidden" id="comment_reply" value="-1" ref="reply">
+                <input type="hidden" id="comment_reply_name" value="0" ref="commentParent">
+                <input type="text" placeholder="昵称" ref="commentName">
+                <input type="email" placeholder="邮箱（收到评论回复是接受邮箱）" ref="commentEmail">
+                <div>
+                    <textarea name="" id="" cols="10" rows="10" placeholder="无意义的内容我可能不会回复你"
+                              ref="commentContent"></textarea>
+                </div>
+                <input type="text" placeholder="验证码(区分大小写)" ref="captcha">
+                <span v-html="vcode" @click="randomCaptcha"></span>
+                <span style="color: #ff4400;" v-show="isRightCode">验证码错误！重新输入...</span>
+
+                <button @click="submitComment">提交留言</button>
+
+            </div>
+
+
+        </div>
+        <!-- 中间区域右边 -->
+        <div class="content-right">
+
+            <div class="panel panel-right-module" id="random-tag">
+                <div class="right-module-head">随机标签云</div>
+                <div class="tag-box-body">
+                    <a href="" v-for="(item,index) in tags" :key="index"
+                       :style="{color:randomColor(),fontSize:randomSize()}">{{item}}</a>
+
+                </div>
+            </div>
+            <div class="panel panel-right-module" id="new-hot">
+                <div class="right-module-head">最近热门</div>
+                <ul class="new-hot">
+                    <li v-for="(item,index) in newHotList">
+                        <a :href="item.link">{{item.title}}</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="panel panel-right-module" id="new-comments">
+                <div class="right-module-head">最新评论</div>
+                <ul class="new-comment">
+                    <li>
+                        <div class="clearfloat">
+                            <span>用户名</span>
+                            <span>2天前</span>
+                        </div>
+                        <div>
+                            <a href="">好的，谢谢！</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="clearfloat">
+                            <span>用户名</span>
+                            <span>2天前</span>
+                        </div>
+                        <div>
+                            <a href="">好的，谢谢！</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="clearfloat">
+                            <span>用户名</span>
+                            <span>2天前</span>
+                        </div>
+                        <div>
+                            <a href="">好的，谢谢！</a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="panel panel-right-module">
+                <div class="right-module-head">友情链接</div>
+                <div class="link-friendship">
+                    <span><a href="">佛布朗斯基</a></span>
+                    <span><a href="">佛布朗斯基</a></span>
+                    <span><a href="">佛布朗斯基</a></span>
+                    <span><a href="">佛布朗斯基</a></span>
+                    <span><a href="">佛布朗斯基</a></span>
+                    <span><a href="">佛布朗斯基</a></span>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--
+  -底部区域
+  -->
+<footer>
+
+</footer>
+<script src="./js/blog-detail.js"></script>
+<script src="./js/base.js"></script>
+</body>
+</html>

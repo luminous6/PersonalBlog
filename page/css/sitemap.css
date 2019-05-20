@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+h2{
+    text-align: center;
+    margin: 10px 0;
+    font-size: 20px;
+}
+html,body{
+    font-size: 14px;
+}
+a{
+    color: #333333;
+}
+.nav,.content,.footer{
+    padding: 8px;
+    border: 1px solid #EEEEEE;
+    clear: both;
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.home-link{
+    text-decoration: underline;
+    font-size: 14px;
+    font-weight: 600;
+}
+.content ul{
+    padding-left: 40px;
+}
+
+.content ul li{
+    margin-top: 8px;
+    list-style: decimal;
+}
+.footer{
+    font-size: 12px;
+}
+.footer a{
+    color: #000000;
+    text-decoration: underline;
+    font-weight: 600;
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XM个人博客</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<!--
+  -头部区域
+  -->
+<header>
+    <div class="header-wrap">
+        <div class="nav-meu">
+            <h1>我的个人博客 | 技术博客</h1>
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li><a href="/sitemap.html">地图</a></li>
+                <li><a href="/about.html">关于</a></li>
+                <li><a href="/guest.html">留言</a></li>
+            </ul>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="请输入关键字">
+            <button>搜索</button>
+        </div>
+    </div>
+</header>
+
+<!--
+  -中间内容区域
+  -->
+<div class="content">
+    <div class="content-wrap clearfloat">
+        <!-- 中间区域左边 -->
+        <div class="content-left">
+            <!-- 每日一句 -->
+            <div class="every-day" id="every-day">
+                <span class="every-day-title">每日一句</span>
+                <p></p>
+                <p v-for="(item,index) in content">{{item.content}}</p>
+
+            </div>
+            <!-- 博客文章 -->
+            <div class="article-list" id="article-list">
+                <div class="panel panel-left-article" v-for="(item,index) in articleArr" :key="item.id">
+                    <div class="panel-body">
+                        <h2><a :href="item.link">{{item.title}}</a></h2>
+                        <p>
+                            {{item.content}}</p>
+                    </div>
+                    <div class="panel-footer">
+                        发布于 <span>{{item.ctime}}</span> | 浏览({{item.views}}) | Tags：{{item.tags}}
+                    </div>
+                </div>
+
+                <!-- 分页功能 -->
+                <div class="page-tool clearfloat">
+                    <ul>
+                        <li class="page-item" v-for="pageNum in pageNumList" @click="jumpTo(pageNum.page)" :class="{now_page:(pageNum.text == page)}">{{pageNum.text}}
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+        <!-- 中间区域右边 -->
+        <div class="content-right">
+
+            <div class="panel panel-right-module" id="random-tag">
+                <div class="right-module-head">随机标签云</div>
+                <div class="tag-box-body">
+                    <a href="" v-for="(item,index) in tags" :key="index"
+                       :style="{color:randomColor(),fontSize:randomSize()}">{{item.tag}}</a>
+
+                </div>
+            </div>
+            <div class="panel panel-right-module" id="new-hot">
+                <div class="right-module-head">最近热门</div>
+                <ul class="new-hot">
+                    <li v-for="(item,index) in newHotList">
+                        <a :href="item.link">{{item.title}}</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="panel panel-right-module" id="new-comments">
+                <div class="right-module-head">最新评论</div>
+                <ul class="new-comment">
+                    <li v-for="(comment,index) in commentsList">
+                        <div class="clearfloat">
+                            <span>{{comment.user_name}}</span>
+                            <span>[{{comment.ctime}}]</span>
+                        </div>
+                        <div>
+                            <a href="">{{comment.comments}}</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel panel-right-module">
+                <div class="right-module-head">友情链接</div>
+                <div class="link-friendship">
+                    <span><a href="">佛布朗斯基</a></span>
+                    <span><a href="">佛布朗斯基</a></span>
+                    <span><a href="">佛布朗斯基</a></span>
+                    <span><a href="">佛布朗斯基</a></span>
+                    <span><a href="">佛布朗斯基</a></span>
+                    <span><a href="">佛布朗斯基</a></span>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--
+  -底部区域
+  -->
+<footer>
+
+</footer>
+
+
+<!--js-->
+<script src="./js/index.js"></script>
+<script src="./js/base.js"></script>
+</body>
+</html>
