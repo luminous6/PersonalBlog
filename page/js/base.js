@@ -18,6 +18,9 @@ let randomTags = new Vue({
             }
         }
     },
+    computed:{
+
+    },
     created: function () {
         this.queryRandomTags()
     },
