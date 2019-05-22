@@ -40,7 +40,7 @@
         <div class="content-left">
             <div class="article-detail" id="article-detail">
                 <h4 class="blog-detail-title">{{blogTitle}}</h4>
-                <p class="blog-detail-info">作者：LUMINOUS 标签：{{tags}} 发布于： {{ctime}} 浏览：{{views}}</p>
+                <p class="blog-detail-info">作者：LUMINOUS 标签：{{tags}} 发布于： {{ctime | dataFormat}} 浏览：{{views}}</p>
                 <div class="blog-detail-text" v-html="content"></div>
             </div>
 
@@ -49,7 +49,7 @@
                 <div class="comments-list">
                     <div class="comments-item" v-for="(item,index) in commentsList" :key="index">
                         <p class="msg-person">
-                            <b>{{item.user_name}}</b>：<span>{{item.options}}发表于 {{item.ctime}}</span>
+                            <b>{{item.user_name}}</b>：<span>{{item.options}}发表于 {{item.ctime | dataFormat}}</span>
                             <a @click="reply(item.id,item.user_name)">[回复]</a>
                         </p>
                         <p class="comment-msg">{{item.comments}}</p>
@@ -86,7 +86,7 @@
                 <div class="right-module-head">随机标签云</div>
                 <div class="tag-box-body">
                     <a href="" v-for="(item,index) in tags" :key="index"
-                       :style="{color:randomColor(),fontSize:randomSize()}">{{item}}</a>
+                       :style="{color:randomColor(),fontSize:randomSize()}">{{item.tag}}</a>
 
                 </div>
             </div>
@@ -102,34 +102,15 @@
             <div class="panel panel-right-module" id="new-comments">
                 <div class="right-module-head">最新评论</div>
                 <ul class="new-comment">
-                    <li>
+                    <li v-for="(comment,index) in commentsList">
                         <div class="clearfloat">
-                            <span>用户名</span>
-                            <span>2天前</span>
+                            <span>{{comment.user_name}}</span>
+                            <span>[{{comment.ctime | dataFormat}}]</span>
                         </div>
                         <div>
-                            <a href="">好的，谢谢！</a>
+                            <a href="">{{comment.comments}}</a>
                         </div>
                     </li>
-                    <li>
-                        <div class="clearfloat">
-                            <span>用户名</span>
-                            <span>2天前</span>
-                        </div>
-                        <div>
-                            <a href="">好的，谢谢！</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="clearfloat">
-                            <span>用户名</span>
-                            <span>2天前</span>
-                        </div>
-                        <div>
-                            <a href="">好的，谢谢！</a>
-                        </div>
-                    </li>
-
                 </ul>
             </div>
             <div class="panel panel-right-module">

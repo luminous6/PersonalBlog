@@ -54,7 +54,7 @@
                             {{item.content}}</p>
                     </div>
                     <div class="panel-footer">
-                        发布于 <span>{{item.ctime}}</span> | 浏览({{item.views}}) | Tags：{{item.tags}}
+                        发布于 <span>{{item.ctime | dataFormat}}</span> | 浏览({{item.views}}) | Tags：{{item.tags}}
                     </div>
                 </div>
 
@@ -99,7 +99,7 @@
                     <li v-for="(comment,index) in commentsList">
                         <div class="clearfloat">
                             <span>{{comment.user_name}}</span>
-                            <span>[{{comment.ctime}}]</span>
+                            <span>[{{comment.ctime | dataFormat}}]</span>
                         </div>
                         <div>
                             <a href="">{{comment.comments}}</a>
